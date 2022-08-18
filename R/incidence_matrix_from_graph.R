@@ -1,3 +1,4 @@
+#' @export
 incidence_matrix_from_graph <- function(my_graph){
   library(igraph)
   # Add the "type" attribute to the vertices of the graph

@@ -1,3 +1,4 @@
+#' @export
 remove_rows <- function(bipartite_network, n_iter, strategy, i_seed) {
   library(fastmatch)
   library(permute)
