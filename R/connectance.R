@@ -1,3 +1,4 @@
+#' @NoRd
 connectance <- function(nw) {
   library(dplyr)
   links <- nw %>% nrow()

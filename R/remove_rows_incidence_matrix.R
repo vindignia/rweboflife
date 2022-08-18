@@ -95,7 +95,7 @@ remove_rows <- function(bipartite_network, n_iter, strategy, i_seed) {
 }
 
 
-
+#' @NoRd
 order_and_shuffle_bipartite <- function(bipartite_network,desc){
 
   # Compute degree for Row Species and order in descending if desc == TRUE
