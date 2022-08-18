@@ -1,5 +1,5 @@
 incidence_matrix_from_graph <- function(my_graph){
-
+  library(igraph)
   # Add the "type" attribute to the vertices of the graph
   V(my_graph)$type <- bipartite_mapping(my_graph)$type
 
