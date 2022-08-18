@@ -4,6 +4,7 @@
 \title{
 Simulate secondary extinction of consumers (columns) by progressive removal of resources (rows)
 }
+%~
 \description{
 This function simulates the secondary extinction of a consumer population (e.g., pollinators) as resources (e.g., plants) are progressively removed.
 }
