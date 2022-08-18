@@ -2,7 +2,7 @@
 \alias{remove_rows}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Simulate secondary extinction of consumers (columns) by progressive removal of resources (rows)
+Simulate secondary extinction of consumers (columns) by progressive removal of resources (rows). \cr
 }
 %~
 \description{

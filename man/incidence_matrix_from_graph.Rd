@@ -2,7 +2,7 @@
 \alias{incidence_matrix_from_graph}
 
 \title{
-Convert a bipartite graph into an incidence matrix.
+Convert a bipartite graph into an incidence matrix. \cr
 }
 %~
 \description{
