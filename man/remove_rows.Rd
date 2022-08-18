@@ -29,8 +29,8 @@ Required packages: fastmatch, permute
 \value{
 dataframe
 %%  If it is a LIST, use
-\item{removed_rows}{ number of resources removed}
-\item{removed_rows}{ average number of consumers that go extinct after having removed a given number of resources}
+\item{removed_rows}{number of resources removed}
+\item{removed_columns}{ average number of consumers that go extinct after having removed a given number of resources}
 %% ...
 }
 \references{

@@ -1,6 +1,6 @@
 Package: weboflife
 Title: Tools for ecological-network analysis
-Version: 0.0.1.0
+Version: 0.0.1
 Authors@R: 
     person("Alessandro", "Vindigni", , "alessandro.vindigni@ieu.uzh.ch", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1941-5989"))
