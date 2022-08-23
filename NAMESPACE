@@ -2,3 +2,10 @@
 
 export(incidence_matrix_from_graph)
 export(remove_rows)
+import(curl)
+import(dplyr)
+import(fastmatch)
+import(igraph)
+import(jsonlite)
+import(permute)
+import(rjson)

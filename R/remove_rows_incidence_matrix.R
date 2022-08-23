@@ -1,7 +1,7 @@
 #' @export
+#' @import fastmatch permute
 remove_rows <- function(bipartite_network, n_iter, strategy, i_seed) {
-  library(fastmatch)
-  library(permute)
+
   set.seed(i_seed)
 
   if (strategy == "RND") print(paste0("RND strtegy"))
