@@ -50,30 +50,28 @@ Alessandro Vindigni
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-## load required packages
-  library(rjson)
-  library(igraph)
-  library(dplyr)
+library(rjson)
+library(igraph)
+library(dplyr)
 
 ## download the a network from the weboflife database as an edge-list in json format
-  base_url <- "https://www.web-of-life.es/"
+base_url <- "https://www.web-of-life.es/"
 
-  my_nw_name <- "M_PL_056"
-  json_url <- paste0(base_url,"get_networks.php?network_name=",my_nw_name)
-  my_nw <- jsonlite::fromJSON(json_url)
+my_nw_name <- "M_PL_056"
+json_url <- paste0(base_url,"get_networks.php?network_name=",my_nw_name)
+my_nw <- jsonlite::fromJSON(json_url)
 
-  # select the 3 relevant columns and create the igraph object
-  my_graph <- my_nw %>% select(species1, species2, connection_strength) %>%
-    graph_from_data_frame()
+# select the 3 relevant columns and create the igraph object
+my_graph1 <- select(my_nw, species1, species2, connection_strength)
+my_graph <- graph_from_data_frame(my_graph1)
 
-  my_inc_mat <- incidence_matrix_from_graph(my_graph)
+my_inc_mat <- incidence_matrix_from_graph(my_graph)
 
-  iterations <- 25 # set the number of iterations
-  removal_strategy <- "RND" # choose the removal strategy
+iterations <- 25 # set the number of iterations
+removal_strategy <- "RND" # choose the removal strategy
 
-  df <- remove_rows(my_inc_mat, iterations, removal_strategy, 645) %>%
-    mutate("network_name" = my_nw_name, "strategy" = removal_strategy)
-
+df1 <- remove_rows(my_inc_mat, iterations, removal_strategy, 645)
+df <- mutate(df1, "network_name" = my_nw_name, "strategy" = removal_strategy)
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

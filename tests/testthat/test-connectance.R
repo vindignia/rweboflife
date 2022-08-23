@@ -1,7 +1,8 @@
 test_that("connectance returns known values", {
-  library(rjson)
   library(igraph)
   library(dplyr)
+  library(curl)
+  library(rjson)
 
   base_url <- "https://www.web-of-life.es/"
 
