@@ -1,5 +1,5 @@
 # weboflife
-Packages for the analysis of ecological networks
+This is a package for the analysis of ecological networks. 
 
 ## Testing 
 To test the package 
