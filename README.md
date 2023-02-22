@@ -1,4 +1,4 @@
-# weboflife
+# rweboflife
 This is a package for the analysis of ecological networks. 
 
 ## Testing 
