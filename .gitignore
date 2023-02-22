@@ -2,3 +2,6 @@
 .DS_Store
 .Rproj.user
 .Rhistory
+.Rbuildignore
+.idea/
+src/*o
