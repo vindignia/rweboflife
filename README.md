@@ -1,7 +1,3 @@
 # rweboflife
-This is a package for the analysis of ecological networks. 
+This is an R package for the analysis of ecological networks developed by the  [Bascompte group](https://www.bascompte.net/) at the University of Zurich.
 
-## Testing 
-To test the package 
-> devtools::check()    
-> devtools::test() 

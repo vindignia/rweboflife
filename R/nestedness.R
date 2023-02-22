@@ -1,5 +1,10 @@
 #' @export
-nestedness <- function(M){
+nestednessR <- function(M){
+
+  # this code computes the nestedness of a given incident matrix M
+  # according to the definition given in
+  # Fortuna, M.A., et al.: Coevolutionary dynamics shape the structure of bacteria‐phage infection networks. Evolution 1001-1011 (2019).
+  # DOI 10.1111/evo.13731
 
   # Make sure we are working with a matrix
   M <- as.matrix(M)
@@ -49,3 +54,4 @@ nestedness <- function(M){
 
   return(nestedness_val)
 }
+
