@@ -1,0 +1,4 @@
+# include libraries
+PKG_CPPFLAGS = -I/usr/include/igraph
+PKG_LIBS = -ligraph -lm -lstdc++ -lxml2 -lz -lgmp -lblas -lcxsparse -lglpk -llapack -larpack -lplfit -lgomp -lpthread
+
