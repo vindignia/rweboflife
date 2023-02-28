@@ -1,4 +1,6 @@
 # include libraries
-PKG_CPPFLAGS = -I/usr/include/igraph
+# choose the proper path to igraph C library
+#PKG_CPPFLAGS = -I/usr/include/igraph # ubuntu 22.04
+PKG_CPPFLAGS = -I/usr/local/include/igraph # ubuntu 20.04
 PKG_LIBS = -ligraph -lm -lstdc++ -lxml2 -lz -lgmp -lblas -lcxsparse -lglpk -llapack -larpack -lplfit -lgomp -lpthread
 
