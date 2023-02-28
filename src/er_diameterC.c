@@ -21,9 +21,9 @@ double er_diameter(int n, int m) {
 //  printf("IGRAPH_UNDIRECTED: %d\n",IGRAPH_UNDIRECTED);
 //  printf("IGRAPH_NO_LOOPS: %d\n",IGRAPH_NO_LOOPS);
 
-printf("\nNodes in ER graph %d\n",num_vertices);
+printf("\nNodes in ER graph %ld\n",num_vertices);
 
-  igraph_diameter(&graph, &diameter, NULL, NULL, NULL, 0, IGRAPH_UNDIRECTED);
+  igraph_diameter(&graph, &diameter, NULL, NULL, NULL, 0, IGRAPH_UNDIRECTED, true);
   printf("Diameter of the ER random graph with average degree %g: %g\n",
           2.0 * igraph_ecount(&graph) / igraph_vcount(&graph),
           (double) diameter);
