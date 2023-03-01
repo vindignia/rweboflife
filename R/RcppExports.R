@@ -5,6 +5,10 @@ er_diameterCpp <- function(n, m) {
     .Call('_rweboflife_er_diameterCpp', PACKAGE = 'rweboflife', n, m)
 }
 
+giant_componentCpp <- function(n, m) {
+    .Call('_rweboflife_giant_componentCpp', PACKAGE = 'rweboflife', n, m)
+}
+
 nestednessCpp <- function(M) {
     .Call('_rweboflife_nestednessCpp', PACKAGE = 'rweboflife', M)
 }

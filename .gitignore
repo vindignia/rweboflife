@@ -4,4 +4,4 @@
 .Rhistory
 .Rbuildignore
 .idea/
-src/*.o
+src/*o

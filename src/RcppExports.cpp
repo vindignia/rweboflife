@@ -22,6 +22,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// giant_componentCpp
+int giant_componentCpp(int n, int m);
+RcppExport SEXP _rweboflife_giant_componentCpp(SEXP nSEXP, SEXP mSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type m(mSEXP);
+    rcpp_result_gen = Rcpp::wrap(giant_componentCpp(n, m));
+    return rcpp_result_gen;
+END_RCPP
+}
 // nestednessCpp
 double nestednessCpp(const NumericMatrix& M);
 RcppExport SEXP _rweboflife_nestednessCpp(SEXP MSEXP) {
@@ -36,6 +48,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_rweboflife_er_diameterCpp", (DL_FUNC) &_rweboflife_er_diameterCpp, 2},
+    {"_rweboflife_giant_componentCpp", (DL_FUNC) &_rweboflife_giant_componentCpp, 2},
     {"_rweboflife_nestednessCpp", (DL_FUNC) &_rweboflife_nestednessCpp, 1},
     {NULL, NULL, 0}
 };
