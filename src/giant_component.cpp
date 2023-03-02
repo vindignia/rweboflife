@@ -15,6 +15,7 @@ int giant_componentCpp(int n, int m) {
   igraph_t graph;
   igraph_vector_int_t membership;
   igraph_vector_int_t csize;
+  int gc = 0;
 
   cout << "\n\n Test giant component \n";
 
@@ -26,8 +27,8 @@ int giant_componentCpp(int n, int m) {
   cout << "\n ER graph with " << num_vertices << " nodes and " << num_edges << " links: p =" <<
     double(num_vertices)/num_edges << "\n\n";
 
-  igraph_vector_int_init_int(&csize, 3, 2, 2, 1, 1, 1, 1);
-  igraph_vector_int_init_int(&membership, 8, 10, 10, 1, 1, 1, 1, 1, 1);
+  igraph_vector_int_init_int(&csize, 3, 2, 1, 1, 1);
+  igraph_vector_int_init_int(&membership, 8, 10, 10, 1, 1);
 
   igraph_connected_components(&graph, &membership, &csize, 0, IGRAPH_WEAK);
   //  igraph_vector_int_print(&membership);
@@ -38,5 +39,6 @@ int giant_componentCpp(int n, int m) {
   igraph_vector_int_destroy(&membership);
   igraph_vector_int_destroy(&csize);
 
-  return 0;
+  // gc = igraph_vector_int_get(&csize, 0);
+  return gc;
 }
