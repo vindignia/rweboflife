@@ -27,18 +27,19 @@ int giant_componentCpp(int n, int m) {
   cout << "\n ER graph with " << num_vertices << " nodes and " << num_edges << " links: p =" <<
     double(num_vertices)/num_edges << "\n\n";
 
-  igraph_vector_int_init_int(&csize, 3, 2, 1, 1, 1);
-  igraph_vector_int_init_int(&membership, 8, 10, 10, 1, 1);
+  igraph_vector_int_init_int(&csize, 3, 2);
+  igraph_vector_int_init_int(&membership, 8, 10);
 
   igraph_connected_components(&graph, &membership, &csize, 0, IGRAPH_WEAK);
   //  igraph_vector_int_print(&membership);
   igraph_vector_int_print(&csize);
+
+  gc = igraph_vector_int_max(&csize);
 
   // free memory
   igraph_destroy(&graph);
   igraph_vector_int_destroy(&membership);
   igraph_vector_int_destroy(&csize);
 
-  // gc = igraph_vector_int_get(&csize, 0);
   return gc;
 }
