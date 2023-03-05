@@ -5,8 +5,8 @@ er_diameterCpp <- function(n, m) {
     .Call('_rweboflife_er_diameterCpp', PACKAGE = 'rweboflife', n, m)
 }
 
-giant_componentCpp <- function(n, m) {
-    .Call('_rweboflife_giant_componentCpp', PACKAGE = 'rweboflife', n, m)
+giant_componentCpp <- function(edges_c_arr, len_c_arr) {
+    .Call('_rweboflife_giant_componentCpp', PACKAGE = 'rweboflife', edges_c_arr, len_c_arr)
 }
 
 nestednessCpp <- function(M) {

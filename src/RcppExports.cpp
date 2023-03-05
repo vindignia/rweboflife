@@ -23,14 +23,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // giant_componentCpp
-int giant_componentCpp(int n, int m);
-RcppExport SEXP _rweboflife_giant_componentCpp(SEXP nSEXP, SEXP mSEXP) {
+int giant_componentCpp(const IntegerVector& edges_c_arr, const int len_c_arr);
+RcppExport SEXP _rweboflife_giant_componentCpp(SEXP edges_c_arrSEXP, SEXP len_c_arrSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    Rcpp::traits::input_parameter< int >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(giant_componentCpp(n, m));
+    Rcpp::traits::input_parameter< const IntegerVector& >::type edges_c_arr(edges_c_arrSEXP);
+    Rcpp::traits::input_parameter< const int >::type len_c_arr(len_c_arrSEXP);
+    rcpp_result_gen = Rcpp::wrap(giant_componentCpp(edges_c_arr, len_c_arr));
     return rcpp_result_gen;
 END_RCPP
 }
