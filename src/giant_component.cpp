@@ -26,10 +26,8 @@ int giant_componentCpp(IntegerVector edges_c_arr, const int len_c_arr) {
 
   igraph_integer_t len = len_c_arr;
   ptr = helper_vec;
-  cout << "\n length in function largest cluster:\n";
-  cout << "\n\n" << len  << "\n\n";
   igraph_vector_int_view(&edges_vec, ptr, len);
-  igraph_vector_int_print(&edges_vec);
+  //igraph_vector_int_print(&edges_vec);
 
   igraph_create(&graph, &edges_vec, 0, IGRAPH_UNDIRECTED);
 
@@ -37,8 +35,8 @@ int giant_componentCpp(IntegerVector edges_c_arr, const int len_c_arr) {
   igraph_vector_int_init_int(&membership, 8, 10);
 
   igraph_connected_components(&graph, &membership, &csize, 0, IGRAPH_WEAK);
-  //  igraph_vector_int_print(&membership);
-  igraph_vector_int_print(&csize);
+  //igraph_vector_int_print(&membership);
+  //igraph_vector_int_print(&csize);
 
   gc = igraph_vector_int_max(&csize);
 
