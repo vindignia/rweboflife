@@ -8,7 +8,7 @@ using namespace std;
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-int inversePercolationCpp(const NumericMatrix & EL) {
+int inversePercolationCpp(const IntegerMatrix & EL) {
   IntegerMatrix Row(2, 2);
 
       IntegerVector v_1 = EL( 1 , _ );
