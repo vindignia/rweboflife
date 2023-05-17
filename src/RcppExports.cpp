@@ -45,11 +45,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// inversePercolationCpp
+int inversePercolationCpp(const NumericMatrix& EL);
+RcppExport SEXP _rweboflife_inversePercolationCpp(SEXP ELSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type EL(ELSEXP);
+    rcpp_result_gen = Rcpp::wrap(inversePercolationCpp(EL));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_rweboflife_er_diameterCpp", (DL_FUNC) &_rweboflife_er_diameterCpp, 2},
     {"_rweboflife_giant_componentCpp", (DL_FUNC) &_rweboflife_giant_componentCpp, 2},
     {"_rweboflife_nestednessCpp", (DL_FUNC) &_rweboflife_nestednessCpp, 1},
+    {"_rweboflife_inversePercolationCpp", (DL_FUNC) &_rweboflife_inversePercolationCpp, 1},
     {NULL, NULL, 0}
 };
 

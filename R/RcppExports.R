@@ -13,3 +13,7 @@ nestednessCpp <- function(M) {
     .Call('_rweboflife_nestednessCpp', PACKAGE = 'rweboflife', M)
 }
 
+inversePercolationCpp <- function(EL) {
+    .Call('_rweboflife_inversePercolationCpp', PACKAGE = 'rweboflife', EL)
+}
+
