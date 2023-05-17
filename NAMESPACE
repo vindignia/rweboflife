@@ -3,6 +3,7 @@
 export(er_diameter)
 export(giant_component)
 export(incidence_matrix_from_graph)
+export(invPerc)
 export(inverse_percolation)
 export(nestedness)
 export(nestednessR)

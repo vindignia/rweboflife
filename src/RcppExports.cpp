@@ -46,12 +46,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // inversePercolationCpp
-int inversePercolationCpp(const NumericMatrix& EL);
+int inversePercolationCpp(const IntegerMatrix& EL);
 RcppExport SEXP _rweboflife_inversePercolationCpp(SEXP ELSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericMatrix& >::type EL(ELSEXP);
+    Rcpp::traits::input_parameter< const IntegerMatrix& >::type EL(ELSEXP);
     rcpp_result_gen = Rcpp::wrap(inversePercolationCpp(EL));
     return rcpp_result_gen;
 END_RCPP
