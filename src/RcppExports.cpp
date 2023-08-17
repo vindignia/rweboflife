@@ -45,6 +45,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// null_swapCpp
+double null_swapCpp(const NumericMatrix& M, int iter);
+RcppExport SEXP _rweboflife_null_swapCpp(SEXP MSEXP, SEXP iterSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type M(MSEXP);
+    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
+    rcpp_result_gen = Rcpp::wrap(null_swapCpp(M, iter));
+    return rcpp_result_gen;
+END_RCPP
+}
 // inversePercolationCpp
 int inversePercolationCpp(const IntegerMatrix& EL);
 RcppExport SEXP _rweboflife_inversePercolationCpp(SEXP ELSEXP) {
@@ -61,6 +73,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rweboflife_er_diameterCpp", (DL_FUNC) &_rweboflife_er_diameterCpp, 2},
     {"_rweboflife_giant_componentCpp", (DL_FUNC) &_rweboflife_giant_componentCpp, 2},
     {"_rweboflife_nestednessCpp", (DL_FUNC) &_rweboflife_nestednessCpp, 1},
+    {"_rweboflife_null_swapCpp", (DL_FUNC) &_rweboflife_null_swapCpp, 2},
     {"_rweboflife_inversePercolationCpp", (DL_FUNC) &_rweboflife_inversePercolationCpp, 1},
     {NULL, NULL, 0}
 };
