@@ -129,49 +129,59 @@ cell_model <- function(M_in){
 
 #' @NoRd
 #' @import permute
-swap_model = function(M_in, iter_max){
-
+swap_model = function(M_in, iter_max) {
   nr <- nrow(M_in) # number of rows
   nc <- ncol(M_in) # number of columns
 
   # initialize M (randomized matrix) iter loop
   M <- M_in
 
-  for(iter in 1:iter_max){
+  # binarize M into a logical matrix
+  B <- as.matrix((M > 0))
+  class(B) <- "numeric"
 
-    # binarize M into a logical matrix
-    B <- as.matrix((M>0))
+  ID <- matrix(c(1, 0, 0, 1), nrow = 2, byrow = TRUE)
+  SX <- matrix(c(0, 1, 1, 0), nrow = 2, byrow = TRUE)
 
-    # flatten logical matrix with row-major order
-    M_vec <- as.vector(t(B))
+  # Create a copy of the original matrix
+  M_swap <- B
 
-    allEqual <- TRUE
-    while (allEqual == TRUE){
-      indexes <- create_indexes(nr, nc)
-      sub_vec <- M_vec[indexes]
-      allEqual <- xor(all(sub_vec), all(!(sub_vec)))
+  for (iter in 1:iter_max) {
+
+    # attempt to swap as many 2x2 subsets as the matrix elements
+    for (sweep in 1:nc * nr) {
+      # Randomly select two distinct rows
+      row_indices <- sample(nr, size = 2, replace = FALSE)
+      row1 <- row_indices[1]
+      row2 <- row_indices[2]
+      # Randomly select two distinct columns
+      col_indices <- sample(nc, size = 2, replace = FALSE)
+      col1 <- col_indices[1]
+      col2 <- col_indices[2]
+
+      # subset a 2x2 matrix
+      subset <- M_swap[c(row1, row2), c(col1, col2)]
+
+      # If the subset has exactly the identity (checkerboard pattern)
+      if (all(subset == ID)) {
+        # then swap
+        M_swap[c(row1, row2), c(col1, col2)] <- SX
+      } else if (all(subset == SX)) {
+        # then swap
+        M_swap[c(row1, row2), c(col1, col2)] <- ID
+      }
     }
-
-    # shaffle indexes till all positions are swapped
-    fullRND <- FALSE
-    while (fullRND == FALSE){
-      indexes_rnd <- indexes[shuffle(indexes)]
-      fullRND <- all(indexes_rnd != indexes)
-    }
-
-    M_vec[indexes_rnd] <- sub_vec
-    M_swap <- matrix(M_vec, nrow=nr, ncol=nc, byrow=TRUE) # back to matrix
-
-    M <- M_swap
-    class(M_swap) <- "numeric"
   }
-
   return(M_swap)
 }
 
 
 #' @export
-null_model <- function(M_in, iter_max = ceiling(nrow(M_in)*ncol(M_in)*2/3), model = NULL){
+null_model <- function(M_in, iter_max = 10*sqrt(nrow(M_in)*ncol(M_in)), model = NULL){
+  # iter_max: empirically, the degree of overlapping with the original matrix
+  # seems to converge exponentially with a decay constant equal to  2*sqrt(nrows*ncols);
+  # after 5 decay constants we can assume the algorithm has converged.
+
   # Make sure we are working with a matrix
   M_in <- as.matrix(M_in)
   if(is.null(model)){
