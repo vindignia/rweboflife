@@ -181,6 +181,7 @@ null_model <- function(M_in, iter_max = 10*sqrt(nrow(M_in)*ncol(M_in)), model = 
   # iter_max: empirically, the degree of overlapping with the original matrix
   # seems to converge exponentially with a decay constant equal to  2*sqrt(nrows*ncols);
   # after 5 decay constants we can assume the algorithm has converged.
+  print(paste0("iter_max = ", iter_max))
 
   # Make sure we are working with a matrix
   M_in <- as.matrix(M_in)
