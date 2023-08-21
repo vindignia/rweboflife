@@ -13,8 +13,8 @@ nestednessCpp <- function(M) {
     .Call('_rweboflife_nestednessCpp', PACKAGE = 'rweboflife', M)
 }
 
-null_swapCpp <- function(M, iter) {
-    .Call('_rweboflife_null_swapCpp', PACKAGE = 'rweboflife', M, iter)
+null_swapCpp <- function(M, iter_max) {
+    .Call('_rweboflife_null_swapCpp', PACKAGE = 'rweboflife', M, iter_max)
 }
 
 inversePercolationCpp <- function(EL) {

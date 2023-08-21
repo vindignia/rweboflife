@@ -46,14 +46,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // null_swapCpp
-double null_swapCpp(const NumericMatrix& M, int iter);
-RcppExport SEXP _rweboflife_null_swapCpp(SEXP MSEXP, SEXP iterSEXP) {
+IntegerMatrix null_swapCpp(const NumericMatrix& M, int iter_max);
+RcppExport SEXP _rweboflife_null_swapCpp(SEXP MSEXP, SEXP iter_maxSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const NumericMatrix& >::type M(MSEXP);
-    Rcpp::traits::input_parameter< int >::type iter(iterSEXP);
-    rcpp_result_gen = Rcpp::wrap(null_swapCpp(M, iter));
+    Rcpp::traits::input_parameter< int >::type iter_max(iter_maxSEXP);
+    rcpp_result_gen = Rcpp::wrap(null_swapCpp(M, iter_max));
     return rcpp_result_gen;
 END_RCPP
 }

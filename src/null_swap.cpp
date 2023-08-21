@@ -8,8 +8,18 @@ using namespace std;
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-double null_swapCpp(const NumericMatrix & M, int iter) {
+IntegerMatrix null_swapCpp(const NumericMatrix & M, int iter_max) {
+
   IntegerMatrix B(M.nrow(), M.ncol());
+
+
+  IntegerVector v_id = {1,0,1,0};
+  v_id.attr("dim") = Dimension(2, 2);
+  IntegerMatrix ID = as<IntegerMatrix>(v_id);
+
+  IntegerVector v_sx = {0,1,0,1};
+  v_sx.attr("dim") = Dimension(2, 2);
+  IntegerMatrix SX = as<IntegerMatrix>(v_sx);
 
   int i, j, nr, nc;
   nr = M.nrow();
@@ -73,5 +83,6 @@ double null_swapCpp(const NumericMatrix & M, int iter) {
   //  Compute nestedness of the network
   double nestedness_val = (nestedness_rows + nestedness_cols) / ((nr * (nr - 1) / 2) + (nc * (nc - 1) / 2));
 
-  return nestedness_val;
+ return SX;
+//  return nestedness_val;
 }
