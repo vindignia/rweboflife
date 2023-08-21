@@ -133,6 +133,11 @@ swap_model = function(M_in, iter_max) {
   nr <- nrow(M_in) # number of rows
   nc <- ncol(M_in) # number of columns
 
+  if(is.null(iter_max)){
+    iter_max <- ceiling(10*sqrt(nr*nc))
+    warning(paste0("as the parameter iter_max was not assigned, the default value iter_max = ", iter_max," was assumed"))
+  }
+
   # initialize M (randomized matrix) iter loop
   M <- M_in
 
@@ -177,11 +182,10 @@ swap_model = function(M_in, iter_max) {
 
 
 #' @export
-null_model <- function(M_in, iter_max = 10*sqrt(nrow(M_in)*ncol(M_in)), model = NULL){
+null_model <- function(M_in, iter_max = NULL, model = NULL){
   # iter_max: empirically, the degree of overlapping with the original matrix
   # seems to converge exponentially with a decay constant equal to  2*sqrt(nrows*ncols);
   # after 5 decay constants we can assume the algorithm has converged.
-  print(paste0("iter_max = ", iter_max))
 
   # Make sure we are working with a matrix
   M_in <- as.matrix(M_in)
