@@ -7,17 +7,52 @@
 using namespace std;
 using namespace Rcpp;
 
+bool all_equal(IntegerMatrix A, IntegerMatrix B) {
+  int nrow = A.nrow();
+  int ncol = A.ncol();
+
+  for (int i = 0; i < nrow; i++) {
+    for (int j = 0; j < ncol; j++) {
+      if (A(i, j) != B(i, j)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+IntegerMatrix extract_subset(IntegerMatrix A, int i, int j) {
+  IntegerMatrix set_out(2,2);
+
+  set_out(0,0) = A(i,j);
+  set_out(1,0) = A(i+1,j);
+  set_out(0,1) = A(i,j+1);
+  set_out(1,1) = A(i+1,j+1);
+  return set_out;
+}
+
+
+IntegerMatrix assign_subset(IntegerMatrix A, int i, int j, IntegerMatrix set_in) {
+  IntegerMatrix B(A.nrow(), A.ncol());
+
+  A(i,j) = set_in(0,0);
+  A(i+1,j) = set_in(1,0);
+  A(i,j+1) = set_in(0,1);
+  A(i+1,j+1) = set_in (1,1);
+  return A;
+}
+
+
 // [[Rcpp::export]]
 IntegerMatrix null_swapCpp(const NumericMatrix & M, int iter_max) {
 
-  IntegerMatrix B(M.nrow(), M.ncol());
+  IntegerMatrix shuffled_mat(M.nrow(), M.ncol()), subset(2,2);
 
-
-  IntegerVector v_id = {1,0,1,0};
+  IntegerVector v_id = {1,0,0,1};
   v_id.attr("dim") = Dimension(2, 2);
   IntegerMatrix ID = as<IntegerMatrix>(v_id);
 
-  IntegerVector v_sx = {0,1,0,1};
+  IntegerVector v_sx = {0,1,1,0};
   v_sx.attr("dim") = Dimension(2, 2);
   IntegerMatrix SX = as<IntegerMatrix>(v_sx);
 
@@ -25,64 +60,28 @@ IntegerMatrix null_swapCpp(const NumericMatrix & M, int iter_max) {
   nr = M.nrow();
   nc = M.ncol();
 
-  //binarize the matrix
+  //initialize a binarized shuffled matrix
   for(i = 0; i < nc*nr; i++) {
     if(M[i]>0){
-      B[i]=1;
+      shuffled_mat[i]=1;
     } else {
-      B[i]=0;
+      shuffled_mat[i]=0;
     }
   }
 
-  // nestedness of rows
-  double nestedness_rows = 0;
-  for(i = 0; i < (nr-1); i++) {
-    j = i + 1;
-    while (j < nr) {
-      IntegerVector v_i = B( i , _ );
-      IntegerVector v_j = B( j , _ );
+  // TODO implement the loop
+  //i = 2, j =0;
+  i = 1, j =0;
 
-      int k_i = accumulate(v_i.begin(), v_i.end(), 0);
-      int k_j = accumulate(v_j.begin(), v_j.end(), 0);
-
-      int shared = inner_product(v_i.begin(), v_i.end(), v_j.begin(), 0);
-
-      // handle disconnected nodes
-      if (!((k_i == 0) || (k_j==0))){
-        int min_shared = min(k_i, k_j); // min of the degrees
-        nestedness_rows = nestedness_rows + (1.0*shared/min_shared);
-      }
-      j++;
-    } // end while iterator
-  } //   end for loop
+  subset = extract_subset(shuffled_mat, i, j);
+  if(all_equal(subset, ID)){
+    // then swap
+    assign_subset(shuffled_mat, i,j, SX);
+  } else if (all_equal(subset, SX)){
+    // then swap
+    assign_subset(shuffled_mat, i,j, ID);
+  }
 
 
-  // nestedness of columns
-  double nestedness_cols = 0;
-  for(i = 0; i < (nc-1); i++) {
-    j = i + 1;
-    while (j < nc) {
-
-      IntegerVector v_i = B( _ , i );
-      IntegerVector v_j = B( _ , j );
-
-      int k_i = accumulate(v_i.begin(), v_i.end(), 0);
-      int k_j = accumulate(v_j.begin(), v_j.end(), 0);
-
-      int shared = inner_product(v_i.begin(), v_i.end(), v_j.begin(), 0);
-
-      // handle disconnected nodes
-      if (!((k_i == 0) || (k_j==0))){
-        int min_shared = min(k_i, k_j); // min of the degrees
-        nestedness_cols = nestedness_cols + (1.0*shared/min_shared);
-      }
-      j++;
-    } // end while iterator
-  } //   end for loop
-
-  //  Compute nestedness of the network
-  double nestedness_val = (nestedness_rows + nestedness_cols) / ((nr * (nr - 1) / 2) + (nc * (nc - 1) / 2));
-
- return SX;
-//  return nestedness_val;
+ return shuffled_mat;
 }
