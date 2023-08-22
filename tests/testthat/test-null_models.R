@@ -37,6 +37,7 @@ test_that("check that the row and columns totals are preserved in the swap null 
   }
 
   M_swap <- null_model(M, iter_max = ceiling(3*sqrt(nrow(M)*ncol(M))), model = "swap")
+#  M_swap <- swap_modelCpp(M, iter_max = ceiling(3*sqrt(nrow(M)*ncol(M)))) // takes 20 times longer
 
   # check row total
   rows_tot_rnd <- c()
