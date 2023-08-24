@@ -12,6 +12,7 @@ randmized according to the chosen null-model algorithm.
 %~
 \usage{
 null_model(my_matrix, iter_max = 200, model = "swap")
+null_model(my_matrix, iter_max = 200, model = "curveball")
 null_model(my_matrix, model = "equifrequent")
 null_model(my_matrix, model = "cell")
 }
@@ -19,7 +20,7 @@ null_model(my_matrix, model = "cell")
 \arguments{
   \item{my_matrix}{matrix, the input matrix. If not yet binarized, it will be converted into a binary matrix}
   \item{iter_max}{integer, maximum number of iterations (swap model only)}
-  \item{model}{string, select the null model; possible values: \cr "swap", "equifrequent", "cell"}
+  \item{model}{string, select the null model; possible values: \cr "swap", "equifrequent", "cell", "curveball"}
 }
 %~
 \details{
@@ -61,7 +62,7 @@ Alessandro Vindigni, Fernando Pedraza
   max_overlap <- 1-ones_fraction
 
   # usage
-  M_swap <- null_model(M, iter_max = 1200, model = "swap") # iter_max = n*m by default
+  M_swap <- null_model(M, iter_max = 1200, model = "swap")
 
   # test the degree of randomization
   overlap_mat <- (M_swap == M)
