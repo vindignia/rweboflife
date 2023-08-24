@@ -1,6 +1,15 @@
 # rweboflife
 This is an R package for the analysis of ecological networks developed in collaboration with the [Bascompte group](https://www.bascompte.net/) of the University of Zurich.
 
+
+# Documentation 
+
+### [Null models](documents/null_models.md)
+
+### [Nestedness](documents/nestedness.md)
+
+### [Network robustness](documents/robustness.md)
+
 # Installation requirements
 
 * **igraph** (C library) see installation instructions on the relative [github](https://github.com/igraph/igraph) page  
