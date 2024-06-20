@@ -5,7 +5,7 @@ incidence_matrix_from_graph <- function(my_graph){
   # Add the "type" attribute to the vertices of the graph
   V(my_graph)$type <- bipartite_mapping(my_graph)$type
 
-  my_inc_mat <- as_incidence_matrix(
+  my_inc_mat <- as_biadjacency_matrix(
     my_graph,
     attr = "connection_strength",
     names = TRUE,
