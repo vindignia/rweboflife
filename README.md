@@ -18,4 +18,12 @@ This is an R package for the analysis of ecological networks developed in collab
 * If you fetch igraph RELEASE from github, add the line 
 > set_target_properties(igraph PROPERTIES POSITION_INDEPENDENT_CODE ON)   
 to the file ./src/CMakeLists.txt then compile igraph with cmake as suggested in the manual
-* R (>= 3.1.0), dplyr, permute, fastmatch, igraph (R library) 
+* R (>= 4.1.0), dplyr, permute, fastmatch, igraph (R library) 
+
+
+### From R script 
+
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+devtools::install_github("vindignia/rweboflife")
