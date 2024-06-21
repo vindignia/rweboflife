@@ -1,5 +1,11 @@
 # include libraries
 # check running system.file(package = "Rcpp") from a R console then
 # choose the proper path to igraph C library
+
+# for my local installation
 ##PKG_CPPFLAGS = -I/usr/local/include/igraph  -I/usr/local/lib/R/site-library/RcppArmadillo/include -I/usr/local/lib/R/site-library/Rcpp/include # ubuntu 22.04
 ##PKG_LIBS = -L/usr/local/lib -ligraph -lm -lstdc++ -lgmp -lblas -lglpk -llapack -larpack -lgomp -lpthread -lxml2 -licui18n -licuuc -licudata -lz -llzma -lm
+
+# For GitHub runners
+# Let the file R-CMD-check.yaml print out the path to the Rcpp.h and RcppArmadillo.h file first (commenting the rest)
+PKG_CPPFLAGS = -I/home/runner/work/_temp/Library/Rcpp/include -I/home/runner/work/_temp/Library/RcppArmadillo/include

@@ -46,22 +46,22 @@ jobs:
       - name: Find RcppArmadillo.h
         run: sudo find /  -name RcppArmadillo.h
 
-      # - name: Install system dependencies
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
-      #
-      # - name: Install R package dependencies
-      #   run: |
-      #     R -e 'install.packages(c("remotes", "testthat"))'
-      #     R -e 'remotes::install_deps(dependencies = TRUE)'
-      #
-      # - name: Install package
-      #   run: R CMD INSTALL .
-      #
-      # - name: Run tests
-      #   run: Rscript -e 'devtools::test()'
-      #
-      # - name: Session info
-      #   run: Rscript -e 'sessionInfo()'
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
+
+      - name: Install R package dependencies
+        run: |
+          R -e 'install.packages(c("remotes", "testthat"))'
+          R -e 'remotes::install_deps(dependencies = TRUE)'
+
+      - name: Install package
+        run: R CMD INSTALL .
+
+      - name: Run tests
+        run: Rscript -e 'devtools::test()'
+
+      - name: Session info
+        run: Rscript -e 'sessionInfo()'
 
