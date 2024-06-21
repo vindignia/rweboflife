@@ -34,7 +34,7 @@ jobs:
 
       # Add a step to run find command
       - name: Find Rcpp.h
-        run: find / -name Rcpp.h 2>/dev/null
+        run: sudo find /  -name Rcpp.h
 
       - name: Install system dependencies
         run: |
