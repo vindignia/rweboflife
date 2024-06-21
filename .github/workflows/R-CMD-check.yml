@@ -34,6 +34,13 @@ jobs:
       - name: Find igraph.h
         run: sudo find /home/runner/work/_temp/Library -name igraph.h
 
+      - name: Verify igraph installation path
+        run: Rscript -e 'print(system.file(package="igraph"))'
+
+      - name: Find igraph.h in library paths
+        run: find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name igraph.h 2>/dev/null
+
+
       # - name: Set environment variables
       #   run: echo "PKG_CPPFLAGS=-I/home/runner/work/_temp/Library/igraph/include" >> ~/.R/Makevars
 
