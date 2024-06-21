@@ -39,6 +39,13 @@ jobs:
       - name: Find Rcpp.h
         run: sudo find /  -name Rcpp.h
 
+      - name: Install RcppArmadillo
+        run: R -e 'install.packages("RcppArmadillo")'
+
+      # Add a step to run find command
+      - name: Find RcppArmadillo.h
+        run: sudo find /  -name RcppArmadillo.h
+
       # - name: Install system dependencies
       #   run: |
       #     sudo apt-get update
