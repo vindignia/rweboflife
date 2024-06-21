@@ -31,7 +31,7 @@ jobs:
       - name: Install system dependencies (cpp igraph)
         run: |
           sudo apt-get update
-          sudo apt-get install -y libigraph0-dev
+          sudo apt-get install -y libigraph2
 
       - name: Find igraph is all runner
         run: sudo find / -name igraph.h
