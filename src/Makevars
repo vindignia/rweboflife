@@ -8,4 +8,4 @@
 
 # For GitHub runners
 # Let the file R-CMD-check.yaml print out the path to the Rcpp.h and RcppArmadillo.h file first (commenting the rest)
-PKG_CPPFLAGS = -I/home/runner/work/_temp/Library/Rcpp/include -I/home/runner/work/_temp/Library/RcppArmadillo/include
+PKG_CPPFLAGS = -I/home/runner/work/_temp/Library/Rcpp/include -I/home/runner/work/_temp/Library/RcppArmadillo/include -I'/home/runner/work/_temp/Library/cpp11/include' -I/usr/local/include
