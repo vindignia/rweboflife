@@ -28,7 +28,15 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
-      - name: Install igraph
+      - name: Install system dependencies (cpp igraph)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libigraph0-dev
+
+      - name: Find igraph is all runner
+        run: sudo find / -name igraph.h
+
+      - name: Install (R) igraph
         run: R -e 'install.packages("igraph")'
 
       - name: Find igraph.h
@@ -70,9 +78,6 @@ jobs:
 
       - name: Find igraph in /home/runner/work/_temp/Library/igraph
         run: sudo find /home/runner/work/_temp/Library/igraph -name igraph.h
-
-      - name: Find igraph is all runner
-        run: sudo find / -name igraph.h
 
       - name: Find igraph in home
         run: sudo find /home/runner/ -name igraph.h
