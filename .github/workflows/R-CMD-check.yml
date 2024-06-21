@@ -28,6 +28,9 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
+      - name: Install igraph
+        run: R -e 'install.packages("igraph")'   
+
       # Add this step to print runner environment details
       - name: List contents of R include directory and igraph
         run: ls /opt/R/4.4.1/lib/R/include
@@ -46,17 +49,15 @@ jobs:
       - name: Find RcppArmadillo.h
         run: sudo find /  -name RcppArmadillo.h
 
-      - name: Install igraph
-        run: R -e 'install.packages("igraph")'
-
       # Add a step to run find command
       - name: Find igraph
         run: sudo find / -name igraph.h
 
-      - name: List contents of include directory for igraph
-        run: | 
-          ls /home/runner/work/_temp/Library/cpp11/include
-          ls /usr/local/include   
+      - name: List contents of directory Library/cpp11/include
+        run: ls /home/runner/work/_temp/Library/cpp11/include
+        
+      - name: List contents of directory /usr/local/include   
+        run: ls /usr/local/include   
 
 #      - name: Install system dependencies
 #        run: |
