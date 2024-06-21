@@ -38,7 +38,7 @@ jobs:
         run: Rscript -e 'print(system.file(package="igraph"))'
 
       - name: Find igraph.h in library paths
-        run: find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name igraph.h 2>/dev/null
+        run: sudo find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name igraph.h
 
 
       # - name: Set environment variables
@@ -65,11 +65,11 @@ jobs:
 
       # Add a step to run find command
 
-      - name: List contents of dir /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
-        run: sudo ls /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
+      - name: List contents of dir /home/runner/work/_temp/Library/igraph
+        run: sudo ls /home/runner/work/_temp/Library/igraph
 
-      - name: Find igraph in /home/runner/work/_temp/Library/00LOCK-igraph/
-        run: sudo find /home/runner/work/_temp/Library/00LOCK-igraph/ -name igraph.h
+      - name: Find igraph in /home/runner/work/_temp/Library/igraph
+        run: sudo find /home/runner/work/_temp/Library/igraph -name igraph.h
 
       - name: Find igraph is all runner
         run: sudo find / -name igraph.h
