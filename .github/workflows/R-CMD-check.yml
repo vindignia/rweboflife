@@ -29,7 +29,14 @@ jobs:
         uses: r-lib/actions/setup-r@v2
 
       - name: Install igraph
-        run: R -e 'install.packages("igraph")'   
+        run: R -e 'install.packages("igraph")'
+
+      - name: Find igraph.h
+        run: find /home/runner/work/_temp/Library -name igraph.h 2>/dev/null
+
+      # - name: Set environment variables
+      #   run: echo "PKG_CPPFLAGS=-I/home/runner/work/_temp/Library/igraph/include" >> ~/.R/Makevars
+
 
       # Add this step to print runner environment details
       - name: List contents of R include directory and igraph
@@ -39,25 +46,28 @@ jobs:
 #        run: R -e 'install.packages("Rcpp")'
 
       # Add a step to run find command
-      - name: Find Rcpp.h
-        run: sudo find /  -name Rcpp.h
+      # - name: Find Rcpp.h
+      #   run: sudo find /  -name Rcpp.h
 
 #      - name: Install RcppArmadillo
 #        run: R -e 'install.packages("RcppArmadillo")'
 
       # Add a step to run find command
-      - name: Find RcppArmadillo.h
-        run: sudo find /  -name RcppArmadillo.h
+      # - name: Find RcppArmadillo.h
+      #   run: sudo find /  -name RcppArmadillo.h
 
       # Add a step to run find command
       - name: Find igraph
         run: sudo find / -name igraph.h
 
-      - name: List contents of directory Library/cpp11/include
-        run: ls /home/runner/work/_temp/Library/cpp11/include
-        
-      - name: List contents of directory /usr/local/include   
-        run: ls /usr/local/include   
+      - name: Find igraph in home
+        run: sudo find /home/runner/R -name igraph.h
+
+      - name: List contents of dir /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
+        run: ls /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
+
+      - name: List contents of directory /usr/local/include
+        run: ls /usr/local/include
 
 #      - name: Install system dependencies
 #        run: |
