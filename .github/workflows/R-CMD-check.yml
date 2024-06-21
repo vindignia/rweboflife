@@ -32,7 +32,7 @@ jobs:
         run: R -e 'install.packages("igraph")'
 
       - name: Find igraph.h
-        run: find /home/runner/work/_temp/Library -name igraph.h 2>/dev/null
+        run: sudo find /home/runner/work/_temp/Library -name igraph.h
 
       # - name: Set environment variables
       #   run: echo "PKG_CPPFLAGS=-I/home/runner/work/_temp/Library/igraph/include" >> ~/.R/Makevars
@@ -40,7 +40,7 @@ jobs:
 
       # Add this step to print runner environment details
       - name: List contents of R include directory and igraph
-        run: ls /opt/R/4.4.1/lib/R/include
+        run: sudo ls /opt/R/4.4.1/lib/R/include
 
 #      - name: Install Rcpp
 #        run: R -e 'install.packages("Rcpp")'
@@ -59,9 +59,12 @@ jobs:
       # Add a step to run find command
 
       - name: List contents of dir /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
-        run: ls /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
+        run: sudo ls /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
 
-      - name: Find igraph i all runner
+      - name: Find igraph in /home/runner/work/_temp/Library/00LOCK-igraph/
+        run: sudo find /home/runner/work/_temp/Library/00LOCK-igraph/ -name igraph.h
+
+      - name: Find igraph is all runner
         run: sudo find / -name igraph.h
 
       - name: Find igraph in home
