@@ -1,4 +1,6 @@
-name: R-testthat
+#@author alessandro vindigni, https://github.com/vindignia/
+
+name: Check R-weboflife
 
 on:
   push:
@@ -23,6 +25,9 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v4
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -30,7 +35,7 @@ jobs:
 
       - name: Install R package dependencies
         run: |
-          install.packages('devtools')
+          install.packages('devtools', dependecies=TRUE)
           install.packages('remotes')
           devtools::install_deps(dependencies = TRUE)
 
