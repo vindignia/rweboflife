@@ -57,14 +57,15 @@ jobs:
       #   run: sudo find /  -name RcppArmadillo.h
 
       # Add a step to run find command
-      - name: Find igraph
-        run: sudo find / -name igraph.h
-
-      - name: Find igraph in home
-        run: sudo find /home/runner/R -name igraph.h
 
       - name: List contents of dir /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
         run: ls /home/runner/work/_temp/Library/00LOCK-igraph/00new/igraph/libs
+
+      - name: Find igraph i all runner
+        run: sudo find / -name igraph.h
+
+      - name: Find igraph in home
+        run: sudo find /home/runner/ -name igraph.h
 
       - name: List contents of directory /usr/local/include
         run: ls /usr/local/include
