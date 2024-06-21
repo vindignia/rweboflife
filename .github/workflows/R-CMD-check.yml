@@ -34,10 +34,8 @@ jobs:
           sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
 
       - name: Install R package dependencies
-        run: |
-          R -e 'install.packages("devtools")'
-          R -e 'install.packages("remotes")'
-          R -e 'devtools::install_deps(dependencies = TRUE)'
+        run: R -e 'install.packages(c("remotes", "testthat"))'
+        run: R -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Install package
         run: R CMD INSTALL .
