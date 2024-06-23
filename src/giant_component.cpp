@@ -1,7 +1,8 @@
 #include <Rcpp.h>
 //#include </usr/local/lib/R/site-library/RcppArray/include/RcppArray.h>
 #include <iostream>
-#include </usr/local/include/igraph/igraph.h>
+#include <igraph.h>
+//#include </usr/local/include/igraph/igraph.h>
 using namespace Rcpp;
 using namespace std;
 
