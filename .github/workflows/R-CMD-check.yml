@@ -61,9 +61,6 @@ jobs:
       #
       - name: Find Rcpp.h in library paths NEW
         run: find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name Rcpp.h 2>/dev/null
-      #
-      - name: Set environment variables NEW
-        run: echo "PKG_CPPFLAGS=-I$(find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name Rcpp.h 2>/dev/null | xargs dirname)" >> ~/.R/Makevars
 
       # - name: Install R package dependencies
       #   run: |
