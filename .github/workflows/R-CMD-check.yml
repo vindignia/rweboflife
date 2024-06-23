@@ -1,6 +1,6 @@
 #@author alessandro vindigni, https://github.com/vindignia/
 
-name: Check R-weboflife
+name: Check R-weboflife on Ubuntu
 
 on:
   push:
