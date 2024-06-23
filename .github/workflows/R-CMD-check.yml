@@ -32,20 +32,6 @@ jobs:
       - name: List contents of R include directory
         run: sudo ls /opt/R/4.4.1/lib/R/include
 
-      - name: Install Rcpp
-        run: R -e 'install.packages("Rcpp")'
-
-      # Add a step to run find command
-      - name: Find Rcpp.h
-        run: sudo find / -name Rcpp.h
-
-      - name: Install RcppArmadillo
-        run: R -e 'install.packages("RcppArmadillo")'
-
-      # Add a step to run find command
-      - name: Find RcppArmadillo.h
-        run: sudo find / -name RcppArmadillo.h
-
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -53,8 +39,40 @@ jobs:
 
       - name: Install R package dependencies
         run: |
+          R -e 'install.packages("Rcpp")'
+          R -e 'install.packages("RcppArmadillo")'
           R -e 'install.packages(c("remotes", "testthat"))'
-          R -e 'remotes::install_deps(dependencies = TRUE)'
+          R -e 'devtools::install_deps(dependencies = TRUE)'
+
+      # - name: Install Rcpp
+      #   run: R -e 'install.packages("Rcpp")'
+
+      # Add a step to run find command
+      - name: Find Rcpp.h
+        run: sudo find / -name Rcpp.h
+
+      # - name: Install RcppArmadillo
+      #   run: R -e 'install.packages("RcppArmadillo")'
+
+      # Add a step to run find command
+      - name: Find RcppArmadillo.h
+        run: sudo find / -name RcppArmadillo.h
+
+# NEW
+
+      - name: Verify Rcpp installation path NEW
+        run: Rscript -e 'print(system.file(package="Rcpp"))'
+
+      - name: Find Rcpp.h in library paths NEW
+        run: find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name Rcpp.h 2>/dev/null
+
+      - name: Set environment variables NEW
+        run: echo "PKG_CPPFLAGS=-I$(find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name Rcpp.h 2>/dev/null | xargs dirname)" >> ~/.R/Makevars
+
+      # - name: Install R package dependencies
+      #   run: |
+      #     R -e 'install.packages(c("remotes", "testthat"))'
+      #     R -e 'remotes::install_deps(dependencies = TRUE)'
 
 #      # - name: Install devtools if needed but it takes 10 minutes
       #   run: R -e 'install.packages("devtools")'
