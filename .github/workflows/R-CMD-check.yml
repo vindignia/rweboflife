@@ -45,10 +45,10 @@ jobs:
           R -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Find Rcpp.h
-        run: find / -name Rcpp.h
+        run: sudo find / -name Rcpp.h
 
       - name: Find RcppArmadillo.h
-        run: find / -name RcppArmadillo.h
+        run: sudo find / -name RcppArmadillo.h
 
       # - name: Install Rcpp
       #   run: R -e 'install.packages("Rcpp")'
