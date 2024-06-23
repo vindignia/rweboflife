@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 #include <iostream>
-#include <igraph/igraph.h>
+#include <igraph.h>
+//#include <igraph/igraph.h>
 using namespace Rcpp;
 using namespace std;
 
