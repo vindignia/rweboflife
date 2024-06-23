@@ -4,99 +4,99 @@ name: Check R-weboflife
 
 on:
   push:
-  branches:
-  - main
-pull_request:
-  branches:
-  - main
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   R-CMD-check:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
-    with:
-    token: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-  - name: Set up Node.js
-    uses: actions/setup-node@v4
-    with:
-    node-version: '20.x'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
 
-  - name: Set up R
-    uses: r-lib/actions/setup-r@v2
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
 
-  - name: Install system dependencies (cpp igraph)
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y libigraph2
+      - name: Install system dependencies (cpp igraph)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libigraph2
 
-  - name: Find igraph is all runner
-    run: sudo find / -name igraph.h
+      - name: Find igraph is all runner
+        run: sudo find / -name igraph.h
 
-  - name: Install (R) igraph
-    run: R -e 'install.packages("igraph")'
+      - name: Install (R) igraph
+        run: R -e 'install.packages("igraph")'
 
-  - name: Find igraph.h
-    run: sudo find /home/runner/work/_temp/Library -name igraph.h
+      - name: Find igraph.h
+        run: sudo find /home/runner/work/_temp/Library -name igraph.h
 
-  - name: Verify igraph installation path
-    run: Rscript -e 'print(system.file(package="igraph"))'
+      - name: Verify igraph installation path
+        run: Rscript -e 'print(system.file(package="igraph"))'
 
-  - name: Find igraph.h in library paths
-    run: sudo find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name igraph.h
+      - name: Find igraph.h in library paths
+        run: sudo find $(Rscript -e 'cat(.libPaths(), sep=" ")') -name igraph.h
 
-  # - name: Set environment variables
-  #   run: echo "PKG_CPPFLAGS=-I/home/runner/work/_temp/Library/igraph/include" >> ~/.R/Makevars
+      # - name: Set environment variables
+      #   run: echo "PKG_CPPFLAGS=-I/home/runner/work/_temp/Library/igraph/include" >> ~/.R/Makevars
 
-  # Add this step to print runner environment details
-  - name: List contents of R include directory and igraph
-  run: sudo ls /opt/R/4.4.1/lib/R/include
+      # Add this step to print runner environment details
+      - name: List contents of R include directory and igraph
+        run: sudo ls /opt/R/4.4.1/lib/R/include
 
-  - name: Install Rcpp
-    run: R -e 'install.packages("Rcpp")'
+      - name: Install Rcpp
+        run: R -e 'install.packages("Rcpp")'
 
-  # Add a step to run find command
-  - name: Find Rcpp.h
-    run: sudo find /  -name Rcpp.h
+      # Add a step to run find command
+      - name: Find Rcpp.h
+        run: sudo find / -name Rcpp.h
 
-  - name: Install RcppArmadillo
-    run: R -e 'install.packages("RcppArmadillo")'
+      - name: Install RcppArmadillo
+        run: R -e 'install.packages("RcppArmadillo")'
 
-  # Add a step to run find command
-  - name: Find RcppArmadillo.h
-    run: sudo find /  -name RcppArmadillo.h
+      # Add a step to run find command
+      - name: Find RcppArmadillo.h
+        run: sudo find / -name RcppArmadillo.h
 
-  # Add a step to run find command
-  - name: List contents of dir /home/runner/work/_temp/Library/igraph
-    run: sudo ls /home/runner/work/_temp/Library/igraph
+      # Add a step to run find command
+      - name: List contents of dir /home/runner/work/_temp/Library/igraph
+        run: sudo ls /home/runner/work/_temp/Library/igraph
 
-  - name: Find igraph in /home/runner/work/_temp/Library/igraph
-    run: sudo find /home/runner/work/_temp/Library/igraph -name igraph.h
+      - name: Find igraph in /home/runner/work/_temp/Library/igraph
+        run: sudo find /home/runner/work/_temp/Library/igraph -name igraph.h
 
-  - name: Find igraph in home
-    run: sudo find /home/runner/ -name igraph.h
+      - name: Find igraph in home
+        run: sudo find /home/runner/ -name igraph.h
 
-  - name: List contents of directory /usr/local/include
-    run: ls /usr/local/include
+      - name: List contents of directory /usr/local/include
+        run: ls /usr/local/include
 
-  - name: Install system dependencies
-    run: |
-      sudo apt-get update
-      sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libcurl4-openssl-dev libssl-dev
 
-  - name: Install R package dependencies
-    run: |
-      R -e 'install.packages(c("remotes", "testthat"))'
-      R -e 'remotes::install_deps(dependencies = TRUE)'
+      - name: Install R package dependencies
+        run: |
+          R -e 'install.packages(c("remotes", "testthat"))'
+          R -e 'remotes::install_deps(dependencies = TRUE)'
 
-  - name: Install package
-    run: R CMD INSTALL .
+      - name: Install package
+        run: R CMD INSTALL .
 
-  - name: Run tests
-    run: Rscript -e 'devtools::test()'
+      - name: Run tests
+        run: Rscript -e 'devtools::test()'
 
-  - name: Session info
-    run: Rscript -e 'sessionInfo()'
+      - name: Session info
+        run: Rscript -e 'sessionInfo()'
