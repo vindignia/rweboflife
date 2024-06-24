@@ -16,7 +16,10 @@ To ensure the package works correctly, we recommend using a recent R installatio
 
 ### From R script 
 
+You can install this package directly from an R script with the following command: 
+```{R}
 if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 devtools::install_github("vindignia/rweboflife")
+```
