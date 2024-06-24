@@ -12,14 +12,7 @@ This is an R package for the analysis of ecological networks developed in collab
 
 # Installation requirements
 
-* **igraph** (C library) see installation instructions on the relative [github](https://github.com/igraph/igraph) page  
-* CMake 3.18 or later
-* C and C++ compilers: on ubuntu the compilation of `rweboflife` is successful  with gcc-11 and g++-11, but throws an error if igraph is built with previous versions 
-* If you fetch igraph RELEASE from github, add the line 
-> set_target_properties(igraph PROPERTIES POSITION_INDEPENDENT_CODE ON)   
-to the file ./src/CMakeLists.txt then compile igraph with cmake as suggested in the manual
-* R (>= 4.1.0), dplyr, permute, fastmatch, igraph (R library) 
-
+To ensure the package works correctly, we recommend using a recent R installation (>= 4.1.0). Additionally, you need to verify the installation paths for **Rcpp** and **RcppArmadillo** on your local machine. Once you have these paths, update the `./src/Makevars` file accordingly. You can refer to the command lines used in the `.github/workflows` directory for guidance on how to find these paths.
 
 ### From R script 
 
